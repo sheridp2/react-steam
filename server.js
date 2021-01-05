@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 
+
 const app = express()
 
 const port = process.env.PORT || 5000
@@ -20,6 +21,10 @@ app.use(bodyParser.urlencoded({
 
 // Configure the CORs middleware
 app.use(cors());
+
+const api = require('./routes/routes');
+
+app.use('/api/v1/', api);
 
 // This middleware informs the express application to serve our compiled React files
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
